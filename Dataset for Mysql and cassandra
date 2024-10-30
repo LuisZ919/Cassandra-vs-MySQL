@@ -30,3 +30,42 @@ INSERT INTO sales (sale_id, product_id, sale_date, quantity) VALUES
 (4, 4, '2023-01-25', 3),
 (5, 1, '2023-02-10', 2),
 (6, 5, '2023-02-15', 1);
+
+
+-- Crear el keyspace (si no existe)
+CREATE KEYSPACE IF NOT EXISTS store 
+WITH REPLICATION = {'class': 'SimpleStrategy', 'replication_factor': 1};
+
+-- Usar el keyspace
+USE store;
+
+-- Crear la tabla products
+CREATE TABLE IF NOT EXISTS products (
+    product_id INT PRIMARY KEY,
+    name TEXT,
+    category TEXT,
+    price DECIMAL
+);
+
+-- Crear la tabla sales
+CREATE TABLE IF NOT EXISTS sales (
+    sale_id INT PRIMARY KEY,
+    product_id INT,
+    sale_date DATE,
+    quantity INT
+);
+
+-- Insertar datos en la tabla products
+INSERT INTO products (product_id, name, category, price) VALUES (1, 'Laptop', 'Electronics', 1200.00);
+INSERT INTO products (product_id, name, category, price) VALUES (2, 'Headphones', 'Electronics', 150.00);
+INSERT INTO products (product_id, name, category, price) VALUES (3, 'Desk Chair', 'Furniture', 350.00);
+INSERT INTO products (product_id, name, category, price) VALUES (4, 'Monitor', 'Electronics', 200.00);
+INSERT INTO products (product_id, name, category, price) VALUES (5, 'Coffee Table', 'Furniture', 100.00);
+
+-- Insertar datos en la tabla sales
+INSERT INTO sales (sale_id, product_id, sale_date, quantity) VALUES (1, 1, '2023-01-10', 1);
+INSERT INTO sales (sale_id, product_id, sale_date, quantity) VALUES (2, 2, '2023-01-15', 2);
+INSERT INTO sales (sale_id, product_id, sale_date, quantity) VALUES (3, 3, '2023-01-20', 1);
+INSERT INTO sales (sale_id, product_id, sale_date, quantity) VALUES (4, 4, '2023-01-25', 3);
+INSERT INTO sales (sale_id, product_id, sale_date, quantity) VALUES (5, 1, '2023-02-10', 2);
+INSERT INTO sales (sale_id, product_id, sale_date, quantity) VALUES (6, 5, '2023-02-15', 1);
