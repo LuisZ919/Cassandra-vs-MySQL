@@ -1,0 +1,32 @@
+-- Conéctate a la base de datos y crea las tablas
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    category VARCHAR(50),
+    price DECIMAL(10, 2)
+);
+
+CREATE TABLE sales (
+    sale_id INT PRIMARY KEY,
+    product_id INT,
+    sale_date DATE,
+    quantity INT,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Inserta datos en la tabla products
+INSERT INTO products (product_id, name, category, price) VALUES
+(1, 'Laptop', 'Electronics', 1200.00),
+(2, 'Headphones', 'Electronics', 150.00),
+(3, 'Desk Chair', 'Furniture', 350.00),
+(4, 'Monitor', 'Electronics', 200.00),
+(5, 'Coffee Table', 'Furniture', 100.00);
+
+-- Inserta datos en la tabla sales
+INSERT INTO sales (sale_id, product_id, sale_date, quantity) VALUES
+(1, 1, '2023-01-10', 1),
+(2, 2, '2023-01-15', 2),
+(3, 3, '2023-01-20', 1),
+(4, 4, '2023-01-25', 3),
+(5, 1, '2023-02-10', 2),
+(6, 5, '2023-02-15', 1);
